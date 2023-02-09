@@ -38,4 +38,9 @@ const registerSchema = Joi.object({
 
 exports.validateRegister = validate(registerSchema)
 
-// exports.validateLogin = validate(loginSchema)
+const loginSchema = Joi.object({
+    userName: Joi.string().required(),
+    password: Joi.string().required()
+})
+
+exports.validateLogin = validate(loginSchema)
