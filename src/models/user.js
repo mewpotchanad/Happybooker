@@ -39,15 +39,9 @@ module.exports = (sequelize, DataTypes) => {
 
 
     User.associate = db => {
-        User.hasOne(db.Profile, {
-            foreignKey: {
-                name: 'userId',
-                allowNull: false
-            },
-            onDelete: 'RESTRICT'
-        })
+       
 
-        User.hasOne(db.Shelf, {
+        User.hasMany(db.Shelf, {
             foreignKey: {
                 name: 'userId',
                 allowNull: false

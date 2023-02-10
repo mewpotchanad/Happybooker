@@ -1,18 +1,18 @@
 module.exports = (sequelize, DataTypes) => {
-    const CategoryName = sequelize.define('CategoryName', {}, { underscored: true })
+    const CategoryEbook = sequelize.define('CategoryEbook', {}, { underscored: true })
 
-    CategoryName.associate = db => {
-        CategoryName.belongsTo(db.Ebook, {
+    CategoryEbook.associate = db => {
+        CategoryEbook.belongsTo(db.Ebook, {
             foreignKey: {
-                name: 'categoryId',
+                name: 'ebookId',
                 allowNull: false
             },
             onDelete: 'RESTRICT'
         })
 
-        CategoryName.hasOne(db.Category, {
+        CategoryEbook.belongsTo(db.Category, {
             foreignKey: {
-                name: 'categoryNameId',
+                name: 'categoryId',
                 allowNull: false
             },
             onDelete: 'RESTRICT'
@@ -21,5 +21,5 @@ module.exports = (sequelize, DataTypes) => {
 
     }
 
-    return CategoryName
+    return CategoryEbook
 }

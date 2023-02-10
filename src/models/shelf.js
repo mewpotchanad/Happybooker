@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: 'RESTRICT'
         })
 
-        Shelf.hasMany(db.Ebook, {
+        Shelf.belongsTo(db.Ebook, {
             foreignKey: {
                 name: 'ebookId',
                 allowNull: false

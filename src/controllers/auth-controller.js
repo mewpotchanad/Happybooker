@@ -48,7 +48,14 @@ exports.login = async (req, res, next) => {
             createError('invalid username or password', 400)
         }
 
-        const accessToken = jwt.sign({ id: user.id }, process.env.JWT_SECRET_KEY, {
+        const accessToken = jwt.sign({ 
+            id: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            userName: user.userName,
+            email: user.email
+        },
+             process.env.JWT_SECRET_KEY, {
             expiresIn: process.env.JWT_EXPIRES_IN
         } )
 

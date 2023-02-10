@@ -10,9 +10,9 @@ module.exports = (sequelize, DataTypes) => {
 
 
     Category.associate = db => {
-        Category.belongsTo(db.CategoryName, {
+        Category.hasMany(db.CategoryEbook, {
             foreignKey: {
-                name: 'categoryNameId',
+                name: 'categoryId',
                 allowNull: false
             },
             onDelete: 'RESTRICT'

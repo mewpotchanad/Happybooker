@@ -11,13 +11,37 @@ module.exports = (sequelize, DataTypes) => {
             validate: {
                 notEmpty: true
             }
+        },
+        publisher: {
+            type: DataTypes.STRING,
+            validate: {
+                notEmpty: true
+            }
+        },
+        author: {
+            type: DataTypes.STRING,
+            validate: {
+                notEmpty: true
+            }
+        },
+        category: {
+            type: DataTypes.STRING,
+            validate: {
+                notEmpty: true
+            }
+        },
+        description: {
+            type: DataTypes.STRING,
+            validate: {
+                notEmpty: true
+            }
         }
     }, { 
         underscored: true 
     })
 
     Ebook.associate = db => {
-        Ebook.hasMany(db.CategoryName, {
+        Ebook.hasMany(db.CategoryEbook, {
             foreignKey: {
                 name: 'categoryId',
                 allowNull: false
@@ -25,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: 'RESTRICT'
         })
 
-        Ebook.belongsTo(db.Shelf, {
+        Ebook.hasMany(db.Shelf, {
             foreignKey: {
                 name: 'ebookId',
                 allowNull: false
