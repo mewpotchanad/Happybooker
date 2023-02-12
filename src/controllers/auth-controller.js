@@ -55,7 +55,9 @@ exports.login = async (req, res, next) => {
             firstName: user.firstName,
             lastName: user.lastName,
             userName: user.userName,
-            email: user.email
+            email: user.email,
+            createdAt: user.createdAt,
+            updatedAt: user.updatedAt
         },
             process.env.JWT_SECRET_KEY, {
             expiresIn: process.env.JWT_EXPIRES_IN
