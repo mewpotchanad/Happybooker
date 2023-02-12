@@ -1,6 +1,5 @@
-const {sequelize} = require('./models')
-sequelize.sync({force: true})
-
+// const {sequelize} = require('./models')
+// sequelize.sync({force: true})
 
 
 
