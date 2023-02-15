@@ -1,4 +1,5 @@
 const { Ebook, Shelf } = require('../models')
+const createError = require('../utils/create-error');
 
 exports.getAllEbook = async (req, res, next) => {
     try {
@@ -54,3 +55,17 @@ exports.getShowEbookFromShelf = async (req, res, next) => {
         next(err)
     }
 }
+
+exports.deleteShowEbookFromShelf = async (req, res, next) => {
+    const {ebookId} = req.params
+    try {
+      await Shelf.destroy({
+        where: {
+            ebookId: ebookId
+        }
+      });
+      res.status(204).json({message: 'delete success'});
+    } catch (err) {
+      next(err);
+    }
+  };

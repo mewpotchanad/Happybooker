@@ -12,4 +12,6 @@ router.post('/:ebookId/:userId', ebookController.createEbookToShelf )
 
 router.get('/shelf/:userId', ebookController.getShowEbookFromShelf)
 
+router.delete('/shelf/:ebookId', ebookController.deleteShowEbookFromShelf)
+
 module.exports = router
