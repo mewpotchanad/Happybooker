@@ -14,6 +14,7 @@ const app = express();
 const authRoute = require("./routes/auth-route");
 const userRoute = require("./routes/user-route");
 const ebookRoute = require("./routes/ebook-route");
+const adminRoute = require("./routes/admin-route");
 const notFoundMiddleware = require("./middlewares/not-found");
 const errorMiddleware = require("./middlewares/error");
 const authenticateMiddleware = require("./middlewares/authenticate");
@@ -34,6 +35,7 @@ app.use(express.json());
 app.use("/auth", authRoute);
 app.use("/user", authenticateMiddleware, userRoute);
 app.use("/ebook", authenticateMiddleware, ebookRoute);
+app.use("/admin", authenticateMiddleware, adminRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
