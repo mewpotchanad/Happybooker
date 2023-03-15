@@ -1,24 +1,27 @@
 module.exports = (sequelize, DataTypes) => {
-    const Category = sequelize.define('Category', {
-        title: {
-            type: DataTypes.STRING,
-            validate: {
-                notEmpty: true
-            }
+  const Category = sequelize.define(
+    "Category",
+    {
+      title: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: true
         }
-    }, { underscored: true })
+      }
+    },
+    { underscored: true }
+  );
 
+  Category.associate = (db) => {
+    Category.hasMany(db.CategoryEbook, {
+      foreignKey: {
+        name: "categoryId",
+        allowNull: false
+      },
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE"
+    });
+  };
 
-    Category.associate = db => {
-        Category.hasMany(db.CategoryEbook, {
-            foreignKey: {
-                name: 'categoryId',
-                allowNull: false
-            },
-            onDelete: 'RESTRICT'
-        })
-
-    }
-
-    return Category
-}
+  return Category;
+};

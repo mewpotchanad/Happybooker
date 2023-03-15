@@ -13,12 +13,16 @@ exports.getAllEbook = async (req, res, next) => {
 
 exports.createEbook = async (req, res, next) => {
   try {
-    const value = req.body;
+    const addEbook = await Ebook.create({
+      title: req.body.title,
+      image: req.body.image,
+      publisher: req.body.publisher,
+      author: req.body.author,
+      category: req.body.category,
+      description: req.body.description
+    });
 
-    value.ebookId = req.params.ebookId;
-
-    const ebook = await Ebook.create(value);
-    res.status(200).json({ ebook });
+    res.status(200).json({ addEbook });
   } catch (err) {
     next(err);
   }
@@ -39,16 +43,36 @@ exports.editEbook = async (req, res, next) => {
   }
 };
 
+// exports.deleteEbook = async (req, res, next) => {
+//   try {
+//     const deleteProduct = await Ebook.findOne({
+//       where: {
+//         id: +req.params.ebookId
+//       }
+//     });
+//     await deleteProduct.destroy();
+//     res.status(200).json({ message: "delete success" });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
 exports.deleteEbook = async (req, res, next) => {
+  const { ebookId } = req.params;
   try {
-    const deleteProduct = await Ebook.findOne({
+    await Ebook.destroy({
       where: {
-        id: +req.params.ebookId
+        id: ebookId
       }
     });
-    await deleteProduct.destroy();
     res.status(200).json({ message: "delete success" });
   } catch (err) {
     next(err);
   }
 };
+// const { ebookId } = req.params;
+//   try {
+//     await Shelf.destroy({
+//       where: {
+//         ebookId: ebookId
+//       }
+//     });
